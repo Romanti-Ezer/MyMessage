@@ -18,9 +18,13 @@ class CreateMessagesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('subject');
             $table->text('content');
+            $table->text('recipientEmail');
+            $table->text('frequency');
+            $table->integer('submissionsNumber')->default(0);
             $table->string('startDate');
             $table->string('expirationDate');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

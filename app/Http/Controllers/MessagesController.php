@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Message;
 use App\Http\Resources\Message as MessageResource;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
 class MessagesController extends Controller
@@ -14,6 +15,13 @@ class MessagesController extends Controller
         $this->authorize('viewAny', Message::class);
 
         return MessageResource::collection( request()->user()->messages );
+    }
+
+    public function indexDeleted()
+    {
+        $this->authorize('viewAny', Message::class);
+
+        return MessageResource::collection( request()->user()->messages()->onlyTrashed()->get() );
     }
 
     public function store()
@@ -45,6 +53,19 @@ class MessagesController extends Controller
             ->setStatusCode(Response::HTTP_OK);
     }
 
+    public function restore($message_id)
+    {
+        $message = Message::onlyTrashed()->find($message_id);
+
+        $this->authorize('restore', $message);
+
+        $message->restore();
+
+        return (new MessageResource($message))
+            ->response()
+            ->setStatusCode(Response::HTTP_OK);
+    }
+
     public function destroy(Message $message)
     {
         $this->authorize('delete', $message);
@@ -54,11 +75,23 @@ class MessagesController extends Controller
         return response([], Response::HTTP_NO_CONTENT);
     }
 
+    public function forceDestroy(Message $message)
+    {
+        $this->authorize('forceDelete', $message);
+
+        $message->forceDelete();
+
+        return response([], Response::HTTP_NO_CONTENT);
+    }
+
     public function validateData()
     {
         return request()->validate([
             'subject' => 'required',
             'content' => 'required',
+            'recipientEmail' => 'required|email',
+            'frequency' => ['required', Rule::in(['daily', 'only once'])],
+            'submissionsNumber' => 'numeric',
             'startDate' => 'required',
             'expirationDate' => 'required',
         ]);
