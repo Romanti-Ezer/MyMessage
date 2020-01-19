@@ -13,11 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:api')->group(function() {
+    Route::get('/messages', 'MessagesController@index');
+    Route::post('/messages', 'MessagesController@store');
+    Route::get('/messages/{message}', 'MessagesController@show');
+    Route::patch('/messages/{message}', 'MessagesController@update');
+    Route::delete('/messages/{message}', 'MessagesController@destroy');
 });
-
-Route::post('/messages', 'MessagesController@store');
-Route::get('/messages/{message}', 'MessagesController@show');
-Route::patch('/messages/{message}', 'MessagesController@update');
-Route::delete('/messages/{message}', 'MessagesController@destroy');
