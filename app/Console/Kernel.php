@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        'App\Console\Commands\SendGeneralMessages'
     ];
 
     /**
@@ -26,6 +26,10 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        $schedule->command('notification:generalmessages')
+                ->daily()
+                ->appendOutputTo (storage_path().'/logs/send_message_output.log')
+                ->runInBackground();
     }
 
     /**
