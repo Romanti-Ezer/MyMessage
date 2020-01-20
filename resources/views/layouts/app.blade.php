@@ -18,14 +18,15 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <router-link class="navbar-brand" to="/">
                     {{ config('app.name', 'Laravel') }}
-                </a>
+                </router-link>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -33,7 +34,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li class="nav-item">
+                            <router-link class="nav-link" to="/messages">Messages</router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link class="nav-link" to="/messages/create">Create</router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link class="nav-link" to="/messages/edit">Edit</router-link>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
