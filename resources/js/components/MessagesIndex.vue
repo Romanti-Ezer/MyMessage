@@ -2,7 +2,7 @@
     <div>
         <h1 class='text-center mb-4'>Messages</h1>
         <div class="container" v-if="messages && messages.length === 0">
-            <p>No messages yet. <router-link to="/messages/create">Get Started.</router-link></p>
+            <p class="text-center">No messages yet. <router-link to="/messages/create">Get Started.</router-link></p>
         </div>
         <div class="container" v-else>
             <table class="table text-center">
@@ -57,9 +57,9 @@
             </table>
         </div>
 
-        <h2 class='text-center mb-4'>Canceled Messages</h2>
+        <h2 class='text-center mb-4 mt-5'>Canceled Messages</h2>
         <div class="container" v-if="messagesDeleted && messagesDeleted.length === 0">
-            <p>No canceled messages.</p>
+            <p class="text-center">No canceled messages.</p>
         </div>
         <div class="container" v-else>
             <table class="table text-center">
