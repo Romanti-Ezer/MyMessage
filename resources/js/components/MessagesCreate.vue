@@ -79,8 +79,7 @@
                         this.$router.push( response.data.links.self );
                     })
                     .catch(errors => {
-                        console.log(errors);
-                        // this.errors = errors.response.data.errors;
+                        this.errors = errors.response.data.errors;
                     });
             }
         },
