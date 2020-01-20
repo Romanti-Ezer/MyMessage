@@ -1,78 +1,49 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# MyMessage
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## About the project
+This is a CRUD project regarding messages with e-mail notifications, created with Laravel and Vue.js.
 
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## How to run the project in your machine
+It's required to have [git](https://git-scm.com/downloads), [composer](https://getcomposer.org/download/) and [npm](https://nodejs.org/en/download/) installed to follow these steps:
+1. Clone this repository with ```git clone https://github.com/Romanti-Ezer/MyMessage.git```
+2. Enter in the folder of the project ```cd MyMessage```
+3. Install dependencies and generate build
+    * Install composer dependencies with ```composer install```
+    * Install npm dependencias and generate build with ```npm install && npm run dev```
+4. Create a database
+    * You can give any name you want
+    * Database collation can be ```latin1_swedish_ci```
+5. configure .env file
+    * Copy the ```.env.example``` and rename to ````.env```
+    * In this file configure the database connection
+    * Configure SMTP to send notifications. I recommend [mailtrap](https://mailtrap.io/)
+6. Migrate database
+    * Run ```php artisan migrate``` to create the tables in the database
+7. Configure task manager to run Laravel Schedule
+    * If using crontab, you can execute ```0 0 * * * /path/to/project/artisan schedule:run >/dev/null 2>&1``` to run Laravel Schedule every day
+    * if you want to test this task in the moment, change App/Console/Kernel.php to ```everyMinute()``` in line 30, and run ```php artisan schedule:run``` to execute the task and verify the messages
+    * To send a message, don't forget to create a message with valid start and expiration dates
+    * The task outputs some lines to ```storage/logs/send_message_output.log```
+8. Run tests
+    * Run ```vendor/bin/phpunit``` to execute all tests
+    * Run ```vendor/bin/phpunit --filter name_of_test``` to execute a single test
+9. Configure virtual host if necessary
+    * Here I have a configuration that can help.
+    ```
+    <VirtualHost mymessage.backoffice:80>
+        ServerAdmin romantigds@gmail.com
+        DocumentRoot "E:/Projetos/mymessage/public"
+        <Directory "E:/Projetos/mymessage/public">
+            Options All
+            AllowOverride All
+            Order Allow,Deny
+            Allow from all
+            Require all granted
+        </Directory>
+        ServerName mymessage.backoffice
+        ServerAlias mymessage.backoffice
+        ErrorLog "logs/mymessage.backoffice.log"
+    </VirtualHost>
+    ```
+    * If you create a virtual host, don't forget to change the APP_URL in the ```.env``` file
+10. Access the app url and create a count to use the system
