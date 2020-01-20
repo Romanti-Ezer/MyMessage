@@ -10,14 +10,14 @@ It's required to have [git](https://git-scm.com/downloads), [composer](https://g
 3. Install dependencies and generate build
     * Install composer dependencies with ```composer install```
     * Install npm dependencias and generate build with ```npm install && npm run dev```
-4. Generate an application key running ```php artisan key:generate```
-5. Create a database
+4. Create a database
     * You can give any name you want
     * Database collation can be ```latin1_swedish_ci```
-6. Configure ```.env``` file
+5. Configure ```.env``` file
     * Copy the ```.env.example``` and rename to ```.env```
     * In this file configure the database connection
     * Configure SMTP to send notifications. I recommend [mailtrap](https://mailtrap.io/) for testing without problems
+6. Generate an application key running ```php artisan key:generate```
 7. Migrate database
     * Run ```php artisan migrate``` to create the tables in the database
 8. Configure task manager to run Laravel Schedule
