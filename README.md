@@ -14,7 +14,7 @@ It's required to have [git](https://git-scm.com/downloads), [composer](https://g
     * You can give any name you want
     * Database collation can be ```latin1_swedish_ci```
 5. configure .env file
-    * Copy the ```.env.example``` and rename to ````.env```
+    * Copy the ```.env.example``` and rename to ```.env```
     * In this file configure the database connection
     * Configure SMTP to send notifications. I recommend [mailtrap](https://mailtrap.io/)
 6. Migrate database
