@@ -20,7 +20,7 @@ class Message extends JsonResource
                 'subject' => $this->subject,
                 'content' => $this->content,
                 'recipientEmail' => $this->recipientEmail,
-                'frequency' => $this->frequency,
+                'frequency' => ucfirst($this->frequency),
                 'submissionsNumber' => $this->submissionsNumber,
                 'startDate' => $this->startDate->format('m/d/Y'),
                 'expirationDate' => $this->expirationDate->format('m/d/Y'),

@@ -161,7 +161,7 @@ class MessagesTest extends TestCase
                 'subject' => $message->subject,
                 'content' => $message->content,
                 'recipientEmail' => $message->recipientEmail,
-                'frequency' => $message->frequency,
+                'frequency' => ucfirst($message->frequency),
                 'submissionsNumber' => $message->submissionsNumber,
                 'startDate' => $message->startDate->format('m/d/Y'),
                 'expirationDate' => $message->expirationDate->format('m/d/Y'),

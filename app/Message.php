@@ -16,7 +16,7 @@ class Message extends Model
 
     public function path()
     {
-        return url( '/messages/' . $this->id );
+        return '/messages/' . $this->id;
     }
 
     public function setStartDateAttribute($startDate)
