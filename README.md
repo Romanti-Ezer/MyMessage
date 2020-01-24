@@ -1,7 +1,7 @@
 # MyMessage
 
 ## About the project
-This is a CRUD project regarding messages with e-mail notifications, created with Laravel and Vue.js.
+This is a CRUD project regarding messages with e-mail notifications, created with Laravel, Vue.js and Bootstrap.
 
 ## How to run the project in your machine
 It's required to have [git](https://git-scm.com/downloads), [composer](https://getcomposer.org/download/) and [npm](https://nodejs.org/en/download/) installed to follow these steps:
