@@ -47,4 +47,4 @@ It's required to have [git](https://git-scm.com/downloads), [composer](https://g
     </VirtualHost>
     ```
     * If you create a virtual host, don't forget to change the APP_URL in the ```.env``` file
-11. Access the app url and create a count to use the system
+11. Access the app url and create an account to use the system
